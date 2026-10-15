@@ -20,7 +20,7 @@ const isMobile = useIsMobile()
 </script>
 
 <template>
-  <Drawer :direction="isMobile ? 'bottom' : 'right'">
+  <Drawer :swipe-direction="isMobile ? 'down' : 'right'" :show-swipe-handle="isMobile">
     <DrawerTrigger as-child>
       <Button variant="outline" :class="props.class">
         Get Code

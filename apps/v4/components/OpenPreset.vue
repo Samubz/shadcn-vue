@@ -66,7 +66,7 @@ function handleSubmit(event: Event) {
 </script>
 
 <template>
-  <Drawer v-if="isMobile" :open="open" @update:open="handleOpenChange">
+  <Drawer v-if="isMobile" :open="open" show-swipe-handle @update:open="handleOpenChange">
     <DrawerTrigger as-child>
       <Button variant="outline" :class="triggerClass">
         {{ props.label ?? 'Open Preset' }}

@@ -77,7 +77,7 @@ const isDesktop = useMediaQuery('(min-width: 768px)')
             </DropdownMenu>
           </template>
           <template v-else>
-            <Drawer v-model:open="open">
+            <Drawer v-model:open="open" show-swipe-handle>
               <DrawerTrigger aria-label="Toggle Menu">
                 <BreadcrumbEllipsis class="h-4 w-4" />
               </DrawerTrigger>

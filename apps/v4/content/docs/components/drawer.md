@@ -1,6 +1,6 @@
 ---
 title: Drawer
-description: A drawer component for mobile devices.
+description: A panel that slides in from any edge of the screen and can be swiped to dismiss.
 component: true
 links:
   doc: https://reka-ui.com/docs/components/drawer
@@ -10,8 +10,12 @@ links:
 ::component-preview
 ---
 name: DrawerDemo
-description: A drawer component.
+description: A drawer that opens from the bottom on mobile and from the right on desktop.
 ---
+::
+
+::callout{class="mt-6"}
+  The drawer has been rebuilt to match the latest shadcn/ui drawer. It adds swipe handles, snap points, nested drawers and non-modal mode. If you installed the previous version, see the [migration guide](#migrating-from-the-previous-drawer).
 ::
 
 ## Installation
@@ -60,6 +64,14 @@ npx shadcn-vue@latest add drawer
 
 :::::
 
+On iOS Safari, the drawer overlay is absolutely positioned. It needs a positioned `body` to cover the viewport after the page has been scrolled, so add the following to your global styles:
+
+```css
+body {
+  position: relative;
+}
+```
+
 ## Usage
 
 ```vue showLineNumbers
@@ -78,17 +90,22 @@ import {
 
 <template>
   <Drawer>
-    <DrawerTrigger>Open</DrawerTrigger>
+    <DrawerTrigger as-child>
+      <Button variant="outline">
+        Open
+      </Button>
+    </DrawerTrigger>
     <DrawerContent>
       <DrawerHeader>
         <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-        <DrawerDescription>
-          This action cannot be undone.
-        </DrawerDescription>
+        <DrawerDescription>This action cannot be undone.</DrawerDescription>
       </DrawerHeader>
+      <div class="p-4">
+        <!-- Content here -->
+      </div>
       <DrawerFooter>
         <Button>Submit</Button>
-        <DrawerClose>
+        <DrawerClose as-child>
           <Button variant="outline">
             Cancel
           </Button>
@@ -99,21 +116,81 @@ import {
 </template>
 ```
 
-## Example
+## Composition
 
-### Scrollable Content
+Build a `Drawer` from these parts:
 
-Keep actions visible while the content scrolls.
+```text
+Drawer
+├── DrawerTrigger
+└── DrawerContent
+    ├── DrawerHeader
+    │   ├── DrawerTitle
+    │   └── DrawerDescription
+    └── DrawerFooter
+```
 
-::component-preview
----
-name: DrawerScrollableContent
----
-::
+`DrawerContent` composes the portal, overlay, viewport and popup from Reka UI. `DrawerPortal`, `DrawerOverlay` and `DrawerSwipeHandle` are also exported for lower-level control.
 
-### Sides
+## Custom Sizes
 
-Use the `swipe-direction` prop to set the direction the drawer swipes toward to dismiss. The drawer is anchored to the edge it dismisses toward, so `up` opens a drawer along the top edge and `down` opens one along the bottom edge. Available options are `up`, `right`, `down`, and `left`.
+A vertical drawer sizes itself to its content, up to `calc(100dvh - 6rem)` by default. A side drawer is `75%` of the viewport width, or `24rem` on larger screens.
+
+To change the height of a vertical drawer, use the `h-*` and `max-h-*` utilities on `DrawerContent`.
+
+```vue
+<DrawerContent class="h-[50vh]">
+```
+
+To change the width of a side drawer, use the `w-*` and `max-w-*` utilities on `DrawerContent`.
+
+```vue
+<DrawerContent class="w-96">
+```
+
+When the same component renders in several directions, scope an override to one axis with the `data-[swipe-axis=*]` variants.
+
+```vue
+<DrawerContent class="data-[swipe-axis=y]:max-h-[50vh] data-[swipe-axis=x]:w-96">
+```
+
+To make part of the drawer scrollable, make the scroll container a flex item. Avoid `h-full`, because it doesn't resolve inside a content-sized drawer.
+
+```vue
+<DrawerContent>
+  <DrawerHeader>...</DrawerHeader>
+  <div class="flex-1 overflow-y-auto p-4">
+    <!-- Scrollable content -->
+  </div>
+  <DrawerFooter>...</DrawerFooter>
+</DrawerContent>
+```
+
+## Styling
+
+The drawer exposes CSS variables for style-level customization. Set the sizing variables on `DrawerContent`, and set the overlay variable on `[data-slot=drawer-overlay]` in your CSS.
+
+| Variable                       | Default                | Description                                                             |
+| ------------------------------ | ---------------------- | ----------------------------------------------------------------------- |
+| `--drawer-inset`               | `0px`                  | Floats the drawer away from the viewport edges.                         |
+| `--drawer-bleed-background`    | `var(--color-popover)` | Fills the gap behind the drawer when a swipe overshoots.                |
+| `--drawer-overlay-min-opacity` | `0`                    | Minimum overlay opacity. Defaults to `0.5` when snap points are active. |
+
+The drawer also sets data attributes. Target them with variants such as `data-[swipe-direction=down]:` on `DrawerContent`, or `group-data-[swipe-axis=y]/drawer-popup:` on its descendants.
+
+| Attribute                 | Values                        | Set when                        |
+| ------------------------- | ----------------------------- | ------------------------------- |
+| `data-swipe-direction`    | `up`, `right`, `down`, `left` | Always.                         |
+| `data-swipe-axis`         | `x`, `y`                      | Always.                         |
+| `data-snap-points`        | Present                       | The drawer has snap points.     |
+| `data-swiping`            | Present                       | A swipe is in progress.         |
+| `data-nested-drawer-open` | Present                       | A nested drawer is open on top. |
+
+## Position
+
+Use the `swipe-direction` prop to set the edge the drawer is anchored to. The drawer is dismissed by swiping toward that edge.
+
+The available options are `up`, `right`, `down` and `left`.
 
 ::component-preview
 ---
@@ -121,12 +198,104 @@ name: DrawerSides
 ---
 ::
 
-### Responsive Modal (Dialog & Drawer)
+## Swipe Handle
 
-Use a `Drawer` component for smaller viewport sizes and a `Dialog` component otherwise. This can be further made reusable by using slots for various parts of the modal.
+Set `show-swipe-handle` on `Drawer` to render a swipe handle.
 
 ::component-preview
 ---
-name: DialogResponsive
+name: DrawerSwipeHandleDemo
 ---
 ::
+
+## Nested
+
+Open drawers from inside another drawer. Parent drawers stay mounted and stack behind the frontmost drawer.
+
+::component-preview
+---
+name: DrawerNested
+---
+::
+
+## Non Modal
+
+Set `:modal="false"` to let users interact with the rest of the page while the drawer is open. To keep the drawer open on outside presses, cancel the `interact-outside` event on `DrawerContent` with `@interact-outside.prevent`. Use `modal="trap-focus"` to keep focus inside the drawer while leaving scrolling and pointer interaction unrestricted.
+
+::component-preview
+---
+name: DrawerNonModal
+---
+::
+
+## Snap Points
+
+Use `snap-points` to snap a drawer to preset heights:
+
+- Numbers between `0` and `1` are fractions of the viewport.
+- Numbers greater than `1` are pixel values.
+- Strings can use `px` or `rem` units.
+
+Snap points apply to vertical drawers.
+
+To track the active snap point, use `v-model:snap-point`.
+
+::component-preview
+---
+name: DrawerSnapPoints
+---
+::
+
+## Responsive
+
+Combine the `Dialog` and `Drawer` components to build a responsive dialog. It renders a `Dialog` on desktop and a `Drawer` on mobile.
+
+::component-preview
+---
+name: DrawerDialog
+---
+::
+
+## Migrating from the previous drawer
+
+If you installed the previous version of the drawer, re-add the component with `npx shadcn-vue@latest add drawer --overwrite`, then update your usage.
+
+:::steps
+
+::step
+The swipe handle is now opt-in.
+::
+
+The previous drawer always rendered a handle on bottom drawers. Set `show-swipe-handle` to keep it.
+
+```diff
+- <Drawer>
++ <Drawer show-swipe-handle>
+```
+
+::step
+Classes on `DrawerContent` now target the popup.
+::
+
+`DrawerContent` renders a viewport and a popup (`data-slot="drawer-popup"`). Classes and attributes go to the popup, and children render inside an inner `data-slot="drawer-content"` wrapper. Make scrollable regions flex items, as shown in [Custom Sizes](#custom-sizes).
+
+::step
+Rename the group selectors.
+::
+
+```diff
+- <div class="group-data-[swipe-direction=down]/drawer-content:text-center">
++ <div class="group-data-[swipe-axis=y]/drawer-popup:text-center">
+```
+
+::step
+Review header and footer spacing.
+::
+
+`DrawerHeader` no longer has bottom padding, and `DrawerFooter` no longer has top padding. Put a padded container (for example `p-4`) between them for the drawer body.
+
+:::
+
+## API Reference
+
+See the [Reka UI documentation](https://reka-ui.com/docs/components/drawer) for the full API reference.

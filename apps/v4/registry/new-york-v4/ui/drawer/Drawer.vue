@@ -1,12 +1,25 @@
 <script lang="ts" setup>
 import type { DrawerRootEmits, DrawerRootProps } from "reka-ui"
+import { reactiveOmit } from "@vueuse/core"
 import { DrawerRoot, useForwardPropsEmits } from "reka-ui"
+import { toRef } from "vue"
+import { provideDrawerContext } from "./utils"
 
-const props = defineProps<DrawerRootProps>()
+const props = withDefaults(defineProps<DrawerRootProps & { showSwipeHandle?: boolean }>(), {
+  modal: true,
+  swipeDirection: "down",
+  showSwipeHandle: false,
+})
 
 const emits = defineEmits<DrawerRootEmits>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = reactiveOmit(props, "showSwipeHandle")
+
+const forwarded = useForwardPropsEmits(delegatedProps, emits)
+
+provideDrawerContext({
+  showSwipeHandle: toRef(() => props.showSwipeHandle),
+})
 </script>
 
 <template>

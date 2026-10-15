@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { Minus, Plus } from '@lucide/vue'
+import { useMediaQuery } from '@vueuse/core'
+import { ref } from 'vue'
+import { toast } from 'vue-sonner'
+import { Badge } from '@/registry/new-york-v4/ui/badge'
 import { Button } from '@/registry/new-york-v4/ui/button'
 import {
   Drawer,
@@ -11,95 +14,116 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/registry/new-york-v4/ui/drawer'
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldLabel,
+  FieldTitle,
+} from '@/registry/new-york-v4/ui/field'
+import { RadioGroup, RadioGroupItem } from '@/registry/new-york-v4/ui/radio-group'
 
-const data = [
-  { goal: 400 },
-  { goal: 300 },
-  { goal: 200 },
-  { goal: 300 },
-  { goal: 200 },
-  { goal: 278 },
-  { goal: 189 },
-  { goal: 239 },
-  { goal: 300 },
-  { goal: 200 },
-  { goal: 278 },
-  { goal: 189 },
-  { goal: 349 },
+const deliveryTimes = [
+  {
+    value: 'asap',
+    id: 'delivery-asap',
+    label: 'Standard delivery',
+    description: '25–35 min · Driver assigned now',
+    badge: 'Fastest',
+  },
+  {
+    value: '5-00',
+    id: 'delivery-5-00',
+    label: '5:00 PM – 5:15 PM',
+    description: 'Prep starts at 4:45 PM',
+  },
+  {
+    value: '5-30',
+    id: 'delivery-5-30',
+    label: '5:30 PM – 5:45 PM',
+    description: 'Good if you\'re heading home',
+  },
+  {
+    value: '6-00',
+    id: 'delivery-6-00',
+    label: '6:00 PM – 6:15 PM',
+    description: 'Most popular · High demand',
+  },
+  {
+    value: '6-30',
+    id: 'delivery-6-30',
+    label: '6:30 PM – 6:45 PM',
+    description: 'Last slot before kitchen closes',
+  },
 ]
 
-const goal = ref(350)
+const open = ref(false)
+const deliveryTime = ref('asap')
+const isMobile = useMediaQuery('(max-width: 767px)')
+
+function handleConfirm() {
+  const selected = deliveryTimes.find(time => time.value === deliveryTime.value)
+
+  if (!selected)
+    return
+
+  open.value = false
+  toast('Delivery time confirmed', {
+    description: selected.label,
+  })
+}
 </script>
 
 <template>
-  <Drawer>
+  <Drawer
+    v-model:open="open"
+    :show-swipe-handle="isMobile"
+    :swipe-direction="isMobile ? 'down' : 'right'"
+  >
     <DrawerTrigger as-child>
-      <Button variant="outline">
+      <Button variant="secondary">
         Open Drawer
       </Button>
     </DrawerTrigger>
     <DrawerContent>
-      <div class="mx-auto w-full max-w-sm">
-        <DrawerHeader>
-          <DrawerTitle>Move Goal</DrawerTitle>
-          <DrawerDescription>Set your daily activity goal.</DrawerDescription>
-        </DrawerHeader>
-        <div class="p-4 pb-0">
-          <div class="flex items-center justify-center space-x-2">
-            <Button
-              variant="outline"
-              size="icon"
-              class="h-8 w-8 shrink-0 rounded-full"
-              :disabled="goal <= 200"
-              @click="goal -= 10"
-            >
-              <Minus />
-              <span class="sr-only">Decrease</span>
-            </Button>
-            <div class="flex-1 text-center">
-              <div class="text-7xl font-bold tracking-tighter">
-                {{ goal }}
-              </div>
-              <div class="text-muted-foreground text-[0.70rem] uppercase">
-                Calories/day
-              </div>
-            </div>
-            <Button
-              variant="outline"
-              size="icon"
-              class="h-8 w-8 shrink-0 rounded-full"
-              :disabled="goal >= 400"
-              @click="goal += 10"
-            >
-              <Plus />
-              <span class="sr-only">Increase</span>
-            </Button>
-          </div>
-          <div class="mt-3 h-[120px]">
-            <!-- <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={data}>
-                  <Bar
-                    dataKey="goal"
-                    style={
-                      {
-                        fill: "hsl(var(--foreground))",
-                        opacity: 0.9,
-                      } as React.CSSProperties
-                    }
-                  />
-                </BarChart>
-              </ResponsiveContainer> -->
-          </div>
-        </div>
-        <DrawerFooter>
-          <Button>Submit</Button>
-          <DrawerClose as-child>
-            <Button variant="outline">
-              Cancel
-            </Button>
-          </DrawerClose>
-        </DrawerFooter>
+      <DrawerHeader>
+        <DrawerTitle>Pick a delivery time</DrawerTitle>
+        <DrawerDescription>
+          We'll prepare your order as soon as possible.
+        </DrawerDescription>
+      </DrawerHeader>
+      <div class="scroll-fade flex-1 overflow-y-auto p-4">
+        <RadioGroup v-model="deliveryTime" class="gap-2">
+          <FieldLabel
+            v-for="time in deliveryTimes"
+            :key="time.value"
+            :for="time.id"
+          >
+            <Field orientation="horizontal">
+              <FieldContent>
+                <FieldTitle class="flex items-center gap-2">
+                  {{ time.label }}
+                  <Badge v-if="time.badge" variant="secondary">
+                    {{ time.badge }}
+                  </Badge>
+                </FieldTitle>
+                <FieldDescription>{{ time.description }}</FieldDescription>
+              </FieldContent>
+              <RadioGroupItem :id="time.id" :value="time.value" />
+            </Field>
+          </FieldLabel>
+        </RadioGroup>
       </div>
+      <DrawerFooter>
+        <Button @click="handleConfirm">
+          Confirm Delivery Time
+        </Button>
+        <DrawerClose as-child>
+          <Button variant="outline">
+            Cancel
+          </Button>
+        </DrawerClose>
+      </DrawerFooter>
     </DrawerContent>
   </Drawer>
 </template>

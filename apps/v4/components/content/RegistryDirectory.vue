@@ -301,7 +301,7 @@ const commands = computed<Record<string, string> | null>(() => {
       </ul>
     </nav>
 
-    <Drawer v-if="isMobile" v-model:open="isAddOpen">
+    <Drawer v-if="isMobile" v-model:open="isAddOpen" show-swipe-handle>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Add Registry</DrawerTitle>

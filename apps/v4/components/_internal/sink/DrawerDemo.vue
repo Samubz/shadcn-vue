@@ -44,7 +44,7 @@ const SIDE_TO_SWIPE_DIRECTION = {
 
 <template>
   <div class="flex flex-wrap items-start gap-4">
-    <Drawer>
+    <Drawer show-swipe-handle>
       <DrawerTrigger as-child>
         <Button variant="outline">
           Open Drawer

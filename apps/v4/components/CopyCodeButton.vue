@@ -34,7 +34,7 @@ const { config } = useConfig()
 </script>
 
 <template>
-  <Drawer>
+  <Drawer show-swipe-handle>
     <DrawerTrigger as-child>
       <Button :class="cn('sm:hidden', props.class)" v-bind="$attrs">
         Copy Code
