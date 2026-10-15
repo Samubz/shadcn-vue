@@ -1052,22 +1052,46 @@ export const examples: Registry["items"] = [
     type: "registry:example",
     files: [
       {
+        path: "drawer/DrawerCustomWidthAndHeight.vue",
+        type: "registry:example",
+      },
+      {
+        path: "drawer/DrawerDemo.vue",
+        type: "registry:example",
+      },
+      {
         path: "drawer/DrawerExample.vue",
         type: "registry:example",
       },
       {
-        path: "drawer/DrawerScrollableContent.vue",
+        path: "drawer/DrawerNested.vue",
         type: "registry:example",
       },
       {
-        path: "drawer/DrawerWithSides.vue",
+        path: "drawer/DrawerNonModal.vue",
+        type: "registry:example",
+      },
+      {
+        path: "drawer/DrawerPosition.vue",
+        type: "registry:example",
+      },
+      {
+        path: "drawer/DrawerScrollable.vue",
+        type: "registry:example",
+      },
+      {
+        path: "drawer/DrawerSnapPoints.vue",
+        type: "registry:example",
+      },
+      {
+        path: "drawer/DrawerSwipeHandleExample.vue",
         type: "registry:example",
       },
     ],
     registryDependencies: [
-      "example",
       "button",
       "drawer",
+      "example",
     ],
     dependencies: [],
   },

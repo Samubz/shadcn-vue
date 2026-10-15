@@ -968,6 +968,14 @@
           "type": "registry:ui"
         },
         {
+          "path": "styles/reka-maia/ui/drawer/DrawerPortal.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "styles/reka-maia/ui/drawer/DrawerSwipeHandle.vue",
+          "type": "registry:ui"
+        },
+        {
           "path": "styles/reka-maia/ui/drawer/DrawerTitle.vue",
           "type": "registry:ui"
         },
@@ -977,6 +985,10 @@
         },
         {
           "path": "styles/reka-maia/ui/drawer/index.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "styles/reka-maia/ui/drawer/utils.ts",
           "type": "registry:ui"
         }
       ]

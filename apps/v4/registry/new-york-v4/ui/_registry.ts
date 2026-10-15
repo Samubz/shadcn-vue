@@ -924,6 +924,14 @@ export const ui: Registry["items"] = [
         type: "registry:ui",
       },
       {
+        path: "ui/drawer/DrawerPortal.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/drawer/DrawerSwipeHandle.vue",
+        type: "registry:ui",
+      },
+      {
         path: "ui/drawer/DrawerTitle.vue",
         type: "registry:ui",
       },
@@ -933,6 +941,10 @@ export const ui: Registry["items"] = [
       },
       {
         path: "ui/drawer/index.ts",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/drawer/utils.ts",
         type: "registry:ui",
       },
     ],

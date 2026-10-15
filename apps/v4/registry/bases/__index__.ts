@@ -1106,6 +1106,16 @@ export const Index: Record<string, Record<string, any>> = {
                   "target": ""
             },
             {
+                  "path": "registry/bases/reka/ui/drawer/DrawerPortal.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/drawer/DrawerSwipeHandle.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
                   "path": "registry/bases/reka/ui/drawer/DrawerTitle.vue",
                   "type": "registry:ui",
                   "target": ""
@@ -1117,6 +1127,11 @@ export const Index: Record<string, Record<string, any>> = {
             },
             {
                   "path": "registry/bases/reka/ui/drawer/index.ts",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/drawer/utils.ts",
                   "type": "registry:ui",
                   "target": ""
             }
@@ -4726,20 +4741,50 @@ export const Index: Record<string, Record<string, any>> = {
       title: "Drawer",
       description: "",
       type: "registry:example",
-      registryDependencies: ["example","button","drawer"],
+      registryDependencies: ["button","drawer","example"],
       files: [
+            {
+                  "path": "registry/bases/reka/examples/drawer/DrawerCustomWidthAndHeight.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/examples/drawer/DrawerDemo.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
             {
                   "path": "registry/bases/reka/examples/drawer/DrawerExample.vue",
                   "type": "registry:example",
                   "target": ""
             },
             {
-                  "path": "registry/bases/reka/examples/drawer/DrawerScrollableContent.vue",
+                  "path": "registry/bases/reka/examples/drawer/DrawerNested.vue",
                   "type": "registry:example",
                   "target": ""
             },
             {
-                  "path": "registry/bases/reka/examples/drawer/DrawerWithSides.vue",
+                  "path": "registry/bases/reka/examples/drawer/DrawerNonModal.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/examples/drawer/DrawerPosition.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/examples/drawer/DrawerScrollable.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/examples/drawer/DrawerSnapPoints.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/examples/drawer/DrawerSwipeHandleExample.vue",
                   "type": "registry:example",
                   "target": ""
             }

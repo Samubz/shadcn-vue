@@ -887,6 +887,14 @@ export const Index: Record<string, any> = {
       type: "registry:ui",
       target: ""
     },{
+      path: "registry/new-york-v4/ui/drawer/DrawerPortal.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/drawer/DrawerSwipeHandle.vue",
+      type: "registry:ui",
+      target: ""
+    },{
       path: "registry/new-york-v4/ui/drawer/DrawerTitle.vue",
       type: "registry:ui",
       target: ""
@@ -896,6 +904,10 @@ export const Index: Record<string, any> = {
       target: ""
     },{
       path: "registry/new-york-v4/ui/drawer/index.ts",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/drawer/utils.ts",
       type: "registry:ui",
       target: ""
     }],
