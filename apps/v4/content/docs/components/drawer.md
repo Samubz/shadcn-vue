@@ -268,9 +268,12 @@ The swipe handle is now opt-in.
 
 The previous drawer always rendered a handle on bottom drawers. Set `show-swipe-handle` to keep it.
 
-```diff
-- <Drawer>
-+ <Drawer show-swipe-handle>
+```vue
+<!-- Before -->
+<Drawer>
+
+<!-- After -->
+<Drawer show-swipe-handle>
 ```
 
 ::step
@@ -283,9 +286,12 @@ Classes on `DrawerContent` now target the popup.
 Rename the group selectors.
 ::
 
-```diff
-- <div class="group-data-[swipe-direction=down]/drawer-content:text-center">
-+ <div class="group-data-[swipe-axis=y]/drawer-popup:text-center">
+```vue
+<!-- Before -->
+<div class="group-data-[swipe-direction=down]/drawer-content:text-center">
+
+<!-- After -->
+<div class="group-data-[swipe-axis=y]/drawer-popup:text-center">
 ```
 
 ::step
