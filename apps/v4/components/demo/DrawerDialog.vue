@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 import { ref } from 'vue'
-import { Button } from '@/registry/new-york-v4/ui/button'
+import { Button } from '@/styles/reka-rhea/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/registry/new-york-v4/ui/dialog'
+} from '@/styles/reka-rhea/ui/dialog'
 import {
   Drawer,
   DrawerContent,
@@ -17,9 +17,9 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@/registry/new-york-v4/ui/drawer'
-import { Input } from '@/registry/new-york-v4/ui/input'
-import { Label } from '@/registry/new-york-v4/ui/label'
+} from '@/styles/reka-rhea/ui/drawer'
+import { Input } from '@/styles/reka-rhea/ui/input'
+import { Label } from '@/styles/reka-rhea/ui/label'
 
 const open = ref(false)
 const isDesktop = useMediaQuery('(min-width: 768px)')

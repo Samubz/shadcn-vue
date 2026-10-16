@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button } from '@/registry/new-york-v4/ui/button'
+import { Button } from '@/styles/reka-rhea/ui/button'
 import {
   Drawer,
   DrawerClose,
@@ -9,7 +9,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@/registry/new-york-v4/ui/drawer'
+} from '@/styles/reka-rhea/ui/drawer'
 </script>
 
 <template>

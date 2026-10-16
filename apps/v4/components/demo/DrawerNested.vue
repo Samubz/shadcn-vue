@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 import { computed } from 'vue'
-import { Button } from '@/registry/new-york-v4/ui/button'
+import { Button } from '@/styles/reka-rhea/ui/button'
 import {
   Drawer,
   DrawerClose,
@@ -11,7 +11,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@/registry/new-york-v4/ui/drawer'
+} from '@/styles/reka-rhea/ui/drawer'
 
 const isMobile = useMediaQuery('(max-width: 767px)')
 const swipeDirection = computed(() => (isMobile.value ? 'down' : 'right'))

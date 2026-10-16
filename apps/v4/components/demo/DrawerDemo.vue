@@ -2,8 +2,8 @@
 import { useMediaQuery } from '@vueuse/core'
 import { ref } from 'vue'
 import { toast } from 'vue-sonner'
-import { Badge } from '@/registry/new-york-v4/ui/badge'
-import { Button } from '@/registry/new-york-v4/ui/button'
+import { Badge } from '@/styles/reka-rhea/ui/badge'
+import { Button } from '@/styles/reka-rhea/ui/button'
 import {
   Drawer,
   DrawerClose,
@@ -13,15 +13,15 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@/registry/new-york-v4/ui/drawer'
+} from '@/styles/reka-rhea/ui/drawer'
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldLabel,
   FieldTitle,
-} from '@/registry/new-york-v4/ui/field'
-import { RadioGroup, RadioGroupItem } from '@/registry/new-york-v4/ui/radio-group'
+} from '@/styles/reka-rhea/ui/field'
+import { RadioGroup, RadioGroupItem } from '@/styles/reka-rhea/ui/radio-group'
 
 const deliveryTimes = [
   {
@@ -115,7 +115,7 @@ function handleConfirm() {
         </RadioGroup>
       </div>
       <DrawerFooter>
-        <Button @click="handleConfirm">
+        <Button class="h-[34px]" @click="handleConfirm">
           Confirm Delivery Time
         </Button>
         <DrawerClose as-child>
