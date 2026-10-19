@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { Color, HSBColor } from "reka-ui"
+import type { Ref } from "vue"
+import type { ColorPickerFormat } from "./format"
 import { PopoverRoot, useId } from "reka-ui"
 import { computed, shallowRef, toRef, watch } from "vue"
 import ColorPickerContent from "./ColorPickerContent.vue"
@@ -16,7 +18,7 @@ const props = withDefaults(defineProps<{
   /** The initial color when uncontrolled. */
   defaultValue?: string
   disabled?: boolean
-  /** Lands on the `ColorPickerInput` field when there is one, else on the trigger. */
+  /** Lands on the first field of a `ColorPickerInput` or `ColorPickerFields` outside the popover when there is one, else on the trigger. */
   id?: string
   /** Names the trigger together with its current hex value. */
   ariaLabelledby?: string
@@ -96,6 +98,37 @@ function registerInput() {
   }
 }
 
+/* The format shown by the mounted `ColorPickerFields`. Presentation only: none
+   of this touches `color` or emits anything. */
+interface FormatEntry { format: Readonly<Ref<ColorPickerFormat>> }
+
+const formatEntries = shallowRef<FormatEntry[]>([])
+const activeFormat = shallowRef<FormatEntry | null>(null)
+const lastShownFormat = shallowRef<ColorPickerFormat>("hex")
+const shownFormat = computed<ColorPickerFormat>(() => activeFormat.value?.format.value ?? "hex")
+
+function registerFormat(format: Readonly<Ref<ColorPickerFormat>>) {
+  const entry: FormatEntry = { format }
+  formatEntries.value = [...formatEntries.value, entry]
+  activeFormat.value = entry
+  lastShownFormat.value = format.value
+  /* The last field to change its format becomes the shown one. */
+  const stop = watch(format, (value) => {
+    activeFormat.value = entry
+    lastShownFormat.value = value
+  })
+  let registered = true
+  return () => {
+    if (!registered)
+      return
+    registered = false
+    stop()
+    formatEntries.value = formatEntries.value.filter(item => item !== entry)
+    if (activeFormat.value === entry)
+      activeFormat.value = formatEntries.value[formatEntries.value.length - 1] ?? null
+  }
+}
+
 provideColorPickerContext({
   color,
   hex,
@@ -107,6 +140,9 @@ provideColorPickerContext({
   valueId: useId(undefined, "color-picker-value"),
   hasInput: computed(() => inputCount.value > 0),
   registerInput,
+  shownFormat,
+  registerFormat,
+  lastShownFormat,
 })
 </script>
 

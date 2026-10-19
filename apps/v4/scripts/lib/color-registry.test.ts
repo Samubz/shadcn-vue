@@ -23,7 +23,13 @@ const COLOR_PICKER_PARTS = [
   'ColorPickerArea',
   'ColorPickerSlider',
   'ColorPickerSwatch',
+  /* add-color-picker-format-tools */
+  'ColorPickerFields',
+  'ColorPickerEyeDropper',
+  'ColorPickerCopy',
 ]
+/* The format helpers the item also exports (spec "Parts and exports"). */
+const COLOR_PICKER_FORMAT_EXPORTS = ['COLOR_PICKER_FORMATS', 'formatColor', 'ColorPickerFormat']
 const COLOR_SCALE_PARTS = ['ColorScale', 'ColorScaleSwatches', 'ColorScaleCopy']
 
 interface RegistryFile { path: string, content: string, type: string }
@@ -110,16 +116,38 @@ describe('registry output for color-picker, color-scale and oklch', () => {
           assert.ok(item.dependencies?.includes(dep), `dependencies has ${dep}: ${JSON.stringify(item.dependencies)}`)
       })
 
-      it('color-picker publishes one SFC per part, index.ts and utils.ts, and exports the seven parts', () => {
+      it('color-picker publishes one SFC per part, index.ts, utils.ts and format.ts, and exports the ten parts', () => {
         const item = readItem(style, 'color-picker')
         const names = fileNames(item)
         for (const part of COLOR_PICKER_PARTS)
           assert.ok(names.includes(`${part}.vue`), `${part}.vue in ${JSON.stringify(names)}`)
         assert.ok(names.includes('index.ts'))
         assert.ok(names.includes('utils.ts'))
+        assert.ok(names.includes('format.ts'), `format.ts in ${JSON.stringify(names)}`)
         const exported = exportedNames(fileContent(item, 'index.ts'))
         for (const part of COLOR_PICKER_PARTS)
           assert.ok(exported.has(part), `index.ts exports ${part}`)
+      })
+
+      it('color-picker depends on dropdown-menu and the oklch lib (format tools)', () => {
+        const item = readItem(style, 'color-picker')
+        for (const dep of ['popover', 'input-group', 'button', 'dropdown-menu', 'oklch'])
+          assert.ok(item.registryDependencies?.includes(dep), `registryDependencies has ${dep}: ${JSON.stringify(item.registryDependencies)}`)
+      })
+
+      it('color-picker index.ts exports COLOR_PICKER_FORMATS, formatColor and ColorPickerFormat from format.ts', () => {
+        const item = readItem(style, 'color-picker')
+        const index = fileContent(item, 'index.ts')
+        const exported = exportedNames(index)
+        for (const name of COLOR_PICKER_FORMAT_EXPORTS)
+          assert.ok(exported.has(name), `index.ts exports ${name}`)
+        assert.match(index, /from\s+["']\.\/format["']/, 'index.ts re-exports from ./format')
+        const format = fileContent(item, 'format.ts')
+        assert.match(format, /export const COLOR_PICKER_FORMATS\b/)
+        assert.match(format, /export function formatColor\b/)
+        assert.match(format, /export type ColorPickerFormat\b/)
+        // format.ts reads OKLCH through the lib, which is a registry dependency.
+        assert.match(format, /lib\/oklch["']/, 'format.ts imports the oklch lib')
       })
 
       it('color-scale is a registry:ui depending on color-picker, button and oklch', () => {
@@ -190,5 +218,27 @@ describe('registry output for color-picker, color-scale and oklch', () => {
         }
       })
     }
+
+    it('color-picker: reka and new-york-v4 publish format.ts with the same exports', () => {
+      const newYork = exportedNames(fileContent(readItem('new-york-v4', 'color-picker'), 'format.ts'))
+      for (const style of REKA_STYLES) {
+        const reka = exportedNames(fileContent(readItem(style, 'color-picker'), 'format.ts'))
+        assert.deepEqual([...reka].sort(), [...newYork].sort(), `${style} vs new-york-v4 format.ts exports`)
+      }
+    })
+
+    it('color-picker: the reka base and new-york-v4 source folders have the same files and index.ts exports', () => {
+      const rekaDir = join(APP_ROOT, 'registry/bases/reka/ui/color-picker')
+      const newYorkDir = join(APP_ROOT, 'registry/new-york-v4/ui/color-picker')
+      /* `_registry.ts` is generated per source, not part of the item's files. */
+      const list = (dir: string) => readdirSync(dir).filter(f => f !== '_registry.ts').sort()
+      assert.deepEqual(list(rekaDir), list(newYorkDir))
+      for (const file of [...COLOR_PICKER_PARTS.map(part => `${part}.vue`), 'index.ts', 'utils.ts', 'format.ts'])
+        assert.ok(list(rekaDir).includes(file), `registry/bases/reka/ui/color-picker/${file}`)
+      const exports = (dir: string) => [...exportedNames(readFileSync(join(dir, 'index.ts'), 'utf8'))].sort()
+      assert.deepEqual(exports(rekaDir), exports(newYorkDir))
+      for (const name of [...COLOR_PICKER_PARTS, ...COLOR_PICKER_FORMAT_EXPORTS])
+        assert.ok(exports(rekaDir).includes(name), `source index.ts exports ${name}`)
+    })
   })
 })

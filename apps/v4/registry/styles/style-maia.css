@@ -1705,6 +1705,30 @@
     @apply rounded-[6px];
   }
 
+  .cn-color-picker-fields {
+    @apply pr-1.5 *:data-[slot=input-group-addon]:pr-[5px];
+  }
+
+  .cn-color-picker-format-trigger {
+    @apply gap-1 text-xs font-medium;
+  }
+
+  .cn-color-picker-format-item {
+    @apply gap-3;
+  }
+
+  .cn-color-picker-field {
+    @apply border-input focus-visible:border-input pr-1 pl-2.5;
+  }
+
+  .cn-color-picker-eye-dropper {
+    @apply text-muted-foreground;
+  }
+
+  .cn-color-picker-copy {
+    @apply text-muted-foreground data-copied:text-foreground;
+  }
+
   /* MARK: Color Scale */
   .cn-color-scale-swatches {
     @apply gap-1.5;

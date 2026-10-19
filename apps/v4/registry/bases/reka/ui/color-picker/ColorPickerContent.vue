@@ -7,7 +7,9 @@ import { useForwardPropsEmits } from "reka-ui"
 import { computed, provide } from "vue"
 import { PopoverContent } from "@/registry/bases/reka/ui/popover"
 import ColorPickerArea from "./ColorPickerArea.vue"
-import ColorPickerInput from "./ColorPickerInput.vue"
+import ColorPickerCopy from "./ColorPickerCopy.vue"
+import ColorPickerEyeDropper from "./ColorPickerEyeDropper.vue"
+import ColorPickerFields from "./ColorPickerFields.vue"
 import ColorPickerSlider from "./ColorPickerSlider.vue"
 import { COLOR_PICKER_CONTENT_KEY, injectColorPickerContext } from "./utils"
 
@@ -30,9 +32,9 @@ const labelAttrs = computed(() =>
   ariaLabelledby.value ? { "aria-labelledby": ariaLabelledby.value } : {},
 )
 
-/* A `ColorPickerInput` inside the popover is a secondary field: it shows a
-   plain swatch instead of a second popover trigger, and leaves `id` to the
-   control outside the popover. */
+/* A `ColorPickerInput` or `ColorPickerFields` inside the popover is secondary:
+   it leaves `id` to the control outside the popover, and a `ColorPickerInput`
+   shows a plain swatch instead of a second popover trigger. */
 provide(COLOR_PICKER_CONTENT_KEY, true)
 </script>
 
@@ -44,8 +46,12 @@ provide(COLOR_PICKER_CONTENT_KEY, true)
   >
     <slot>
       <ColorPickerArea />
-      <ColorPickerSlider />
-      <ColorPickerInput aria-label="Hex color" />
+      <div class="flex items-center gap-2">
+        <ColorPickerEyeDropper />
+        <ColorPickerSlider class="flex-1" />
+        <ColorPickerCopy />
+      </div>
+      <ColorPickerFields />
     </slot>
   </PopoverContent>
 </template>
