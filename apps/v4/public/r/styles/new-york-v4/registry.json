@@ -676,6 +676,98 @@
       "type": "registry:ui"
     },
     {
+      "name": "color-picker",
+      "dependencies": [
+        "reka-ui",
+        "cn",
+        "@vueuse/core"
+      ],
+      "registryDependencies": [
+        "popover",
+        "input-group",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york-v4/ui/color-picker/ColorPicker.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/ColorPickerArea.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/ColorPickerContent.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/ColorPickerInput.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/ColorPickerSlider.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/ColorPickerSwatch.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/ColorPickerTrigger.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/index.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/utils.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "color-scale",
+      "dependencies": [
+        "@vueuse/core",
+        "reka-ui",
+        "cn"
+      ],
+      "registryDependencies": [
+        "button",
+        "color-picker",
+        "oklch"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york-v4/ui/color-scale/ColorScale.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-scale/ColorScaleCopy.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-scale/ColorScaleSwatches.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-scale/index.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-scale/scale.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-scale/utils.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
       "name": "combobox",
       "dependencies": [
         "reka-ui",
@@ -4368,6 +4460,16 @@
       "files": [
         {
           "path": "registry/new-york-v4/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "type": "registry:lib"
+    },
+    {
+      "name": "oklch",
+      "files": [
+        {
+          "path": "registry/new-york-v4/lib/oklch.ts",
           "type": "registry:lib"
         }
       ],

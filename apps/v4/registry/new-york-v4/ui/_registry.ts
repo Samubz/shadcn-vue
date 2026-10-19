@@ -641,6 +641,98 @@ export const ui: Registry["items"] = [
     ],
   },
   {
+    name: "color-picker",
+    type: "registry:ui",
+    dependencies: [
+      "reka-ui",
+      "cn",
+      "@vueuse/core",
+    ],
+    registryDependencies: [
+      "popover",
+      "input-group",
+      "button",
+    ],
+    files: [
+      {
+        path: "ui/color-picker/ColorPicker.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/ColorPickerArea.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/ColorPickerContent.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/ColorPickerInput.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/ColorPickerSlider.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/ColorPickerSwatch.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/ColorPickerTrigger.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/index.ts",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/utils.ts",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "color-scale",
+    type: "registry:ui",
+    dependencies: [
+      "@vueuse/core",
+      "reka-ui",
+      "cn",
+    ],
+    registryDependencies: [
+      "button",
+      "color-picker",
+      "oklch",
+    ],
+    files: [
+      {
+        path: "ui/color-scale/ColorScale.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-scale/ColorScaleCopy.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-scale/ColorScaleSwatches.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-scale/index.ts",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-scale/scale.ts",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-scale/utils.ts",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
     name: "combobox",
     type: "registry:ui",
     dependencies: [

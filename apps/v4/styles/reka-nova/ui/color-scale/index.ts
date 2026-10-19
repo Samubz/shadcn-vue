@@ -1,0 +1,6 @@
+export { default as ColorScale } from './ColorScale.vue'
+export { default as ColorScaleCopy } from './ColorScaleCopy.vue'
+export { default as ColorScaleSwatches } from './ColorScaleSwatches.vue'
+export { buildColorScale, buildColorScaleCss, COLOR_SCALE_STEPS } from './scale'
+export type { ColorScaleStep, ColorScaleStepName } from './scale'
+export type { ColorScaleSlotProps } from './utils'

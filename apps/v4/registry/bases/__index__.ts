@@ -774,6 +774,103 @@ export const Index: Record<string, Record<string, any>> = {
       categories: undefined,
       meta: undefined,
     },
+    "color-picker": {
+      name: "color-picker",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["popover","input-group","button"],
+      files: [
+            {
+                  "path": "registry/bases/reka/ui/color-picker/ColorPicker.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/ColorPickerArea.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/ColorPickerContent.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/ColorPickerInput.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/ColorPickerSlider.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/ColorPickerSwatch.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/ColorPickerTrigger.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/index.ts",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/utils.ts",
+                  "type": "registry:ui",
+                  "target": ""
+            }
+      ],
+      categories: undefined,
+      meta: undefined,
+    },
+    "color-scale": {
+      name: "color-scale",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: ["button","color-picker","oklch"],
+      files: [
+            {
+                  "path": "registry/bases/reka/ui/color-scale/ColorScale.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-scale/ColorScaleCopy.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-scale/ColorScaleSwatches.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-scale/index.ts",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-scale/scale.ts",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-scale/utils.ts",
+                  "type": "registry:ui",
+                  "target": ""
+            }
+      ],
+      categories: undefined,
+      meta: undefined,
+    },
     "combobox": {
       name: "combobox",
       title: "undefined",
@@ -4512,6 +4609,58 @@ export const Index: Record<string, Record<string, any>> = {
       categories: undefined,
       meta: undefined,
     },
+    "color-picker-example": {
+      name: "color-picker-example",
+      title: "Color Picker",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["example","color-picker","field"],
+      files: [
+            {
+                  "path": "registry/bases/reka/examples/color-picker/ColorPickerExample.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/examples/color-picker/ColorPickerPopover.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/examples/color-picker/ColorPickerSwatchRow.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/examples/color-picker/ColorPickerWithInput.vue",
+                  "type": "registry:example",
+                  "target": ""
+            }
+      ],
+      categories: undefined,
+      meta: undefined,
+    },
+    "color-scale-example": {
+      name: "color-scale-example",
+      title: "Color Scale",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["card","color-picker","color-scale","field","example"],
+      files: [
+            {
+                  "path": "registry/bases/reka/examples/color-scale/ColorScaleBrand.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/examples/color-scale/ColorScaleExample.vue",
+                  "type": "registry:example",
+                  "target": ""
+            }
+      ],
+      categories: undefined,
+      meta: undefined,
+    },
     "combobox-example": {
       name: "combobox-example",
       title: "Combobox",
@@ -6417,6 +6566,22 @@ export const Index: Record<string, Record<string, any>> = {
             {
                   "path": "registry/bases/reka/examples/trace/TraceTurn.vue",
                   "type": "registry:example",
+                  "target": ""
+            }
+      ],
+      categories: undefined,
+      meta: undefined,
+    },
+    "oklch": {
+      name: "oklch",
+      title: "undefined",
+      description: "",
+      type: "registry:lib",
+      registryDependencies: [],
+      files: [
+            {
+                  "path": "registry/bases/reka/lib/oklch.ts",
+                  "type": "registry:lib",
                   "target": ""
             }
       ],

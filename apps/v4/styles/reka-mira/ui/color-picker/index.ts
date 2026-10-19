@@ -1,0 +1,7 @@
+export { default as ColorPicker } from './ColorPicker.vue'
+export { default as ColorPickerArea } from './ColorPickerArea.vue'
+export { default as ColorPickerContent } from './ColorPickerContent.vue'
+export { default as ColorPickerInput } from './ColorPickerInput.vue'
+export { default as ColorPickerSlider } from './ColorPickerSlider.vue'
+export { default as ColorPickerSwatch } from './ColorPickerSwatch.vue'
+export { default as ColorPickerTrigger } from './ColorPickerTrigger.vue'

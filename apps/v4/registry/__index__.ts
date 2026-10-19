@@ -621,6 +621,84 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "color-picker": {
+    name: "color-picker",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["popover","input-group","button"],
+    files: [{
+      path: "registry/new-york-v4/ui/color-picker/ColorPicker.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-picker/ColorPickerArea.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-picker/ColorPickerContent.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-picker/ColorPickerInput.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-picker/ColorPickerSlider.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-picker/ColorPickerSwatch.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-picker/ColorPickerTrigger.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-picker/index.ts",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-picker/utils.ts",
+      type: "registry:ui",
+      target: ""
+    }],
+    categories: undefined,
+    meta: undefined,
+  },
+  "color-scale": {
+    name: "color-scale",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["button","color-picker","oklch"],
+    files: [{
+      path: "registry/new-york-v4/ui/color-scale/ColorScale.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-scale/ColorScaleCopy.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-scale/ColorScaleSwatches.vue",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-scale/index.ts",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-scale/scale.ts",
+      type: "registry:ui",
+      target: ""
+    },{
+      path: "registry/new-york-v4/ui/color-scale/utils.ts",
+      type: "registry:ui",
+      target: ""
+    }],
+    categories: undefined,
+    meta: undefined,
+  },
   "combobox": {
     name: "combobox",
     description: "",
@@ -3611,6 +3689,19 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/new-york-v4/lib/utils.ts",
+      type: "registry:lib",
+      target: ""
+    }],
+    categories: undefined,
+    meta: undefined,
+  },
+  "oklch": {
+    name: "oklch",
+    description: "",
+    type: "registry:lib",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/new-york-v4/lib/oklch.ts",
       type: "registry:lib",
       target: ""
     }],

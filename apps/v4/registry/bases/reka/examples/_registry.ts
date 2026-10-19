@@ -831,6 +831,58 @@ export const examples: Registry["items"] = [
     dependencies: [],
   },
   {
+    name: "color-picker-example",
+    title: "Color Picker",
+    type: "registry:example",
+    files: [
+      {
+        path: "color-picker/ColorPickerExample.vue",
+        type: "registry:example",
+      },
+      {
+        path: "color-picker/ColorPickerPopover.vue",
+        type: "registry:example",
+      },
+      {
+        path: "color-picker/ColorPickerSwatchRow.vue",
+        type: "registry:example",
+      },
+      {
+        path: "color-picker/ColorPickerWithInput.vue",
+        type: "registry:example",
+      },
+    ],
+    registryDependencies: [
+      "example",
+      "color-picker",
+      "field",
+    ],
+    dependencies: [],
+  },
+  {
+    name: "color-scale-example",
+    title: "Color Scale",
+    type: "registry:example",
+    files: [
+      {
+        path: "color-scale/ColorScaleBrand.vue",
+        type: "registry:example",
+      },
+      {
+        path: "color-scale/ColorScaleExample.vue",
+        type: "registry:example",
+      },
+    ],
+    registryDependencies: [
+      "card",
+      "color-picker",
+      "color-scale",
+      "field",
+      "example",
+    ],
+    dependencies: [],
+  },
+  {
     name: "combobox-example",
     title: "Combobox",
     type: "registry:example",
