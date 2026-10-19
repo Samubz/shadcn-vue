@@ -684,8 +684,10 @@
       ],
       "registryDependencies": [
         "popover",
-        "input-group",
-        "button"
+        "button",
+        "oklch",
+        "dropdown-menu",
+        "input-group"
       ],
       "files": [
         {
@@ -698,6 +700,18 @@
         },
         {
           "path": "registry/new-york-v4/ui/color-picker/ColorPickerContent.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/ColorPickerCopy.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/ColorPickerEyeDropper.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/ColorPickerFields.vue",
           "type": "registry:ui"
         },
         {
@@ -714,6 +728,10 @@
         },
         {
           "path": "registry/new-york-v4/ui/color-picker/ColorPickerTrigger.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/new-york-v4/ui/color-picker/format.ts",
           "type": "registry:ui"
         },
         {

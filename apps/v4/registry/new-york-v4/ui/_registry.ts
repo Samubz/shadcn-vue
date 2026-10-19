@@ -650,8 +650,10 @@ export const ui: Registry["items"] = [
     ],
     registryDependencies: [
       "popover",
-      "input-group",
       "button",
+      "oklch",
+      "dropdown-menu",
+      "input-group",
     ],
     files: [
       {
@@ -664,6 +666,18 @@ export const ui: Registry["items"] = [
       },
       {
         path: "ui/color-picker/ColorPickerContent.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/ColorPickerCopy.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/ColorPickerEyeDropper.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/ColorPickerFields.vue",
         type: "registry:ui",
       },
       {
@@ -680,6 +694,10 @@ export const ui: Registry["items"] = [
       },
       {
         path: "ui/color-picker/ColorPickerTrigger.vue",
+        type: "registry:ui",
+      },
+      {
+        path: "ui/color-picker/format.ts",
         type: "registry:ui",
       },
       {

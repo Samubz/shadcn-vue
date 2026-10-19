@@ -779,7 +779,7 @@ export const Index: Record<string, Record<string, any>> = {
       title: "undefined",
       description: "",
       type: "registry:ui",
-      registryDependencies: ["popover","input-group","button"],
+      registryDependencies: ["popover","button","oklch","dropdown-menu","input-group"],
       files: [
             {
                   "path": "registry/bases/reka/ui/color-picker/ColorPicker.vue",
@@ -793,6 +793,21 @@ export const Index: Record<string, Record<string, any>> = {
             },
             {
                   "path": "registry/bases/reka/ui/color-picker/ColorPickerContent.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/ColorPickerCopy.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/ColorPickerEyeDropper.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/ColorPickerFields.vue",
                   "type": "registry:ui",
                   "target": ""
             },
@@ -813,6 +828,11 @@ export const Index: Record<string, Record<string, any>> = {
             },
             {
                   "path": "registry/bases/reka/ui/color-picker/ColorPickerTrigger.vue",
+                  "type": "registry:ui",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/ui/color-picker/format.ts",
                   "type": "registry:ui",
                   "target": ""
             },
@@ -4622,12 +4642,22 @@ export const Index: Record<string, Record<string, any>> = {
                   "target": ""
             },
             {
+                  "path": "registry/bases/reka/examples/color-picker/ColorPickerFormatFields.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
                   "path": "registry/bases/reka/examples/color-picker/ColorPickerPopover.vue",
                   "type": "registry:example",
                   "target": ""
             },
             {
                   "path": "registry/bases/reka/examples/color-picker/ColorPickerSwatchRow.vue",
+                  "type": "registry:example",
+                  "target": ""
+            },
+            {
+                  "path": "registry/bases/reka/examples/color-picker/ColorPickerTools.vue",
                   "type": "registry:example",
                   "target": ""
             },

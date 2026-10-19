@@ -1,12 +1,13 @@
 import type { Color, HSBColor } from 'reka-ui'
 import type { ComputedRef, InjectionKey, Ref } from 'vue'
-import { convertToHsb, convertToRgb, createContext, isValidColor, parseColor } from 'reka-ui'
+import type { ColorPickerFormat } from './format'
+import { convertToRgb, createContext, isValidColor, parseColor } from 'reka-ui'
 
 /**
  * Shared state of a `ColorPicker`, provided by the root and injected by every part.
  *
  * Labelling rule (the root renders no element, so these attributes land on a part):
- * - `id` goes to the `ColorField` input when a `ColorPickerInput` is mounted
+ * - `id` goes to the first field of a `ColorPickerInput` or `ColorPickerFields` mounted outside the popover
  *   (`hasInput` is true), and to the `ColorPickerTrigger` otherwise.
  * - The trigger's accessible name: with `ariaLabelledby`, it uses
  *   `aria-labelledby="<ariaLabelledby> <valueId>"`, where `valueId` is an
@@ -44,13 +45,37 @@ export interface ColorPickerContext {
    * that holds the current hex, referenced by the trigger's `aria-labelledby`.
    */
   valueId: string
-  /** Whether at least one `ColorPickerInput` is mounted. */
+  /** Whether at least one `ColorPickerInput` or `ColorPickerFields` is mounted outside the popover. */
   hasInput: Readonly<Ref<boolean>>
   /**
-   * Called by `ColorPickerInput` on mount; returns the function to call on
+   * Called by `ColorPickerInput` and `ColorPickerFields` (outside the popover) in setup; returns the function to call on
    * unmount. Drives `hasInput`.
    */
   registerInput: () => () => void
+  /**
+   * The format shown by the mounted `ColorPickerFields`: the one registered or
+   * changed last, or `"hex"` when none is mounted. `ColorPickerCopy` copies in
+   * it when it has no `format` prop of its own.
+   *
+   * Presentation state only: the shown format (and `registerFormat`,
+   * `lastShownFormat`) never changes what `update:modelValue` emits, which is
+   * always lowercase `#rrggbb`.
+   */
+  shownFormat: Readonly<Ref<ColorPickerFormat>>
+  /**
+   * Called by `ColorPickerFields` on mount with its shown format; returns the
+   * function to call on unmount (idempotent, like `registerInput`'s). While
+   * several are registered, the one registered or changed last drives
+   * `shownFormat` and `lastShownFormat`. Never emits anything.
+   */
+  registerFormat: (format: Readonly<Ref<ColorPickerFormat>>) => () => void
+  /**
+   * The last format any `ColorPickerFields` showed, `"hex"` until one has.
+   * Kept by the root across unmounts, because reka's `PopoverContent` unmounts
+   * its children on close: a remounted `ColorPickerFields` starts from
+   * `defaultFormat ?? lastShownFormat`. Never changes what is emitted.
+   */
+  lastShownFormat: Readonly<Ref<ColorPickerFormat>>
 }
 
 const [injectContext, provideColorPickerContext] = createContext<ColorPickerContext>('ColorPicker')
@@ -129,7 +154,7 @@ export function toSafeColor(value: unknown, fallback: HSBColor): HSBColor {
 
   let hsb: HSBColor
   try {
-    hsb = convertToHsb(color)
+    hsb = toHsb(color)
   }
   catch {
     return fallback
@@ -143,6 +168,34 @@ export function toSafeColor(value: unknown, fallback: HSBColor): HSBColor {
     ? fallback.h
     : hsb.h >= 0 && hsb.h <= 360 ? hsb.h : ((hsb.h % 360) + 360) % 360
   return { space: 'hsb', h, s, b, alpha: 1 }
+}
+
+/**
+ * Any reka `Color` in the `hsb` space. An HSB color is returned as is;
+ * others go through RGB with reui's formula rather than reka's
+ * `convertToHsb`, whose hue carries float noise (36.24999999999999 for
+ * 36.25) that `formatColor` would round the other way from reui. A gray
+ * gets hue 0. Throws for an unknown space, like `convertToRgb`.
+ */
+export function toHsb(color: Color): HSBColor {
+  if (color.space === 'hsb')
+    return color
+  const { r: red, g: green, b: blue, alpha } = convertToRgb(color)
+  const r = red / 255
+  const g = green / 255
+  const b = blue / 255
+  const max = Math.max(r, g, b)
+  const delta = max - Math.min(r, g, b)
+  let h = 0
+  if (delta > 1e-9) {
+    h = max === r
+      ? ((g - b) / delta) % 6
+      : max === g
+        ? (b - r) / delta + 2
+        : (r - g) / delta + 4
+    h = ((h * 60 % 360) + 360) % 360
+  }
+  return { space: 'hsb', h, s: max === 0 ? 0 : (delta / max) * 100, b: max * 100, alpha }
 }
 
 /** Any reka `Color` as a lowercase `#rrggbb` string, ignoring alpha. */

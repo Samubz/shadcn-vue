@@ -884,6 +884,13 @@
     "phosphor": "PhPencil",
     "remixicon": "RiPencilLine"
   },
+  "PipetteIcon": {
+    "lucide": "PipetteIcon",
+    "tabler": "IconColorPicker",
+    "hugeicons": "ColorPickerIcon",
+    "phosphor": "PhEyedropper",
+    "remixicon": "RiSipLine"
+  },
   "PlayIcon": {
     "lucide": "PlayIcon",
     "tabler": "IconPlayerPlay",

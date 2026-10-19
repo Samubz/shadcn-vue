@@ -840,11 +840,19 @@ export const examples: Registry["items"] = [
         type: "registry:example",
       },
       {
+        path: "color-picker/ColorPickerFormatFields.vue",
+        type: "registry:example",
+      },
+      {
         path: "color-picker/ColorPickerPopover.vue",
         type: "registry:example",
       },
       {
         path: "color-picker/ColorPickerSwatchRow.vue",
+        type: "registry:example",
+      },
+      {
+        path: "color-picker/ColorPickerTools.vue",
         type: "registry:example",
       },
       {
