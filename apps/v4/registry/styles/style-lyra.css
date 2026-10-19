@@ -1651,4 +1651,50 @@
   .cn-questionnaire-actions {
     @apply gap-1.5 sm:min-h-8;
   }
+
+  /* MARK: Color Picker */
+  .cn-color-picker-trigger {
+    @apply min-w-0;
+  }
+
+  .cn-color-picker-content {
+    @apply gap-2.5;
+  }
+
+  .cn-color-picker-area {
+    @apply rounded-none;
+  }
+
+  .cn-color-picker-area-thumb {
+    @apply ring-ring/50 rounded-none transition-[box-shadow] focus-visible:ring-1;
+  }
+
+  .cn-color-picker-slider {
+    @apply rounded-none;
+  }
+
+  .cn-color-picker-slider-track {
+    @apply rounded-none;
+  }
+
+  .cn-color-picker-slider-thumb {
+    @apply ring-ring/50 rounded-none transition-[box-shadow] hover:ring-1 focus-visible:ring-1 active:ring-1;
+  }
+
+  .cn-color-picker-swatch {
+    @apply rounded-none;
+  }
+
+  /* MARK: Color Scale */
+  .cn-color-scale-swatches {
+    @apply gap-1;
+  }
+
+  .cn-color-scale-swatch {
+    @apply gap-1;
+  }
+
+  .cn-color-scale-step {
+    @apply text-[0.625rem];
+  }
 }

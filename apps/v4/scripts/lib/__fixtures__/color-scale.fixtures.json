@@ -1,0 +1,625 @@
+{
+  "$comment": "Generated once from reui's reference color math (MIT): color-picker.tsx parseColor/formatColor/rgbToOklch and c-color-picker-14 buildScale. L is 0..1 (CSS number form). Do not edit by hand.",
+  "bases": [
+    {
+      "hex": "#7c3aed",
+      "oklch": [
+        0.5413370851180865,
+        0.24658592413900496,
+        293.0089677307044
+      ],
+      "oklchString": "oklch(54.13% 0.24659 293.009)",
+      "roundTrip": "#7c3aed",
+      "roundTripViaString": "#7c3aed",
+      "scale": [
+        {
+          "step": 50,
+          "value": "#f3f1fe"
+        },
+        {
+          "step": 100,
+          "value": "#e4e0fb"
+        },
+        {
+          "step": 200,
+          "value": "#d1c8fa"
+        },
+        {
+          "step": 300,
+          "value": "#b6a5f7"
+        },
+        {
+          "step": 400,
+          "value": "#9470f4"
+        },
+        {
+          "step": 500,
+          "value": "#7c3aed"
+        },
+        {
+          "step": 600,
+          "value": "#6e00e6"
+        },
+        {
+          "step": 700,
+          "value": "#5f00c9"
+        },
+        {
+          "step": 800,
+          "value": "#4d00a8"
+        },
+        {
+          "step": 900,
+          "value": "#3e0f81"
+        },
+        {
+          "step": 950,
+          "value": "#250f4d"
+        }
+      ],
+      "targetInSrgb": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        true
+      ],
+      "naiveClip": [
+        "#f3f1fe",
+        "#e4e0fb",
+        "#d1c8fa",
+        "#b6a5f7",
+        "#9470f4",
+        "#7c3aed",
+        "#6e00e6",
+        "#6100d4",
+        "#4e00a9",
+        "#3e0f81",
+        "#250f4d"
+      ]
+    },
+    {
+      "hex": "#3b82f6",
+      "oklch": [
+        0.6230830295087604,
+        0.18801471201981484,
+        259.8145266738871
+      ],
+      "oklchString": "oklch(62.31% 0.18801 259.815)",
+      "roundTrip": "#3b82f6",
+      "roundTripViaString": "#3b82f6",
+      "scale": [
+        {
+          "step": 50,
+          "value": "#f0f5fe"
+        },
+        {
+          "step": 100,
+          "value": "#dee9fc"
+        },
+        {
+          "step": 200,
+          "value": "#c4dafc"
+        },
+        {
+          "step": 300,
+          "value": "#9fc2fa"
+        },
+        {
+          "step": 400,
+          "value": "#69a0fa"
+        },
+        {
+          "step": 500,
+          "value": "#3b82f6"
+        },
+        {
+          "step": 600,
+          "value": "#0966ea"
+        },
+        {
+          "step": 700,
+          "value": "#0053d6"
+        },
+        {
+          "step": 800,
+          "value": "#0045ab"
+        },
+        {
+          "step": 900,
+          "value": "#123e84"
+        },
+        {
+          "step": 950,
+          "value": "#0f2851"
+        }
+      ],
+      "targetInSrgb": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true
+      ],
+      "naiveClip": [
+        "#f0f5fe",
+        "#dee9fc",
+        "#c4dafc",
+        "#9fc2fa",
+        "#69a0fa",
+        "#3b82f6",
+        "#0966ea",
+        "#0053d6",
+        "#0045ab",
+        "#123e84",
+        "#0f2851"
+      ]
+    },
+    {
+      "hex": "#0ea5e9",
+      "oklch": [
+        0.6846872329688296,
+        0.14786861426526837,
+        237.32251792831974
+      ],
+      "oklchString": "oklch(68.47% 0.14787 237.323)",
+      "roundTrip": "#0ea5e9",
+      "roundTripViaString": "#0ea5e9",
+      "scale": [
+        {
+          "step": 50,
+          "value": "#f1f8fd"
+        },
+        {
+          "step": 100,
+          "value": "#dfeffa"
+        },
+        {
+          "step": 200,
+          "value": "#c6e3f7"
+        },
+        {
+          "step": 300,
+          "value": "#a0d2f3"
+        },
+        {
+          "step": 400,
+          "value": "#62baef"
+        },
+        {
+          "step": 500,
+          "value": "#0ea5e9"
+        },
+        {
+          "step": 600,
+          "value": "#008ad1"
+        },
+        {
+          "step": 700,
+          "value": "#0077b6"
+        },
+        {
+          "step": 800,
+          "value": "#006198"
+        },
+        {
+          "step": 900,
+          "value": "#00527c"
+        },
+        {
+          "step": 950,
+          "value": "#06344c"
+        }
+      ],
+      "targetInSrgb": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "naiveClip": [
+        "#f1f8fd",
+        "#dfeffa",
+        "#c6e3f7",
+        "#a0d2f3",
+        "#62baef",
+        "#0ea5e9",
+        "#008bd7",
+        "#0077c2",
+        "#00619c",
+        "#00527c",
+        "#06344c"
+      ]
+    },
+    {
+      "hex": "#000000",
+      "oklch": [
+        0,
+        0,
+        0
+      ],
+      "oklchString": "oklch(0% 0 0)",
+      "roundTrip": "#000000",
+      "roundTripViaString": "#000000",
+      "scale": [
+        {
+          "step": 50,
+          "value": "#e5e5e5"
+        },
+        {
+          "step": 100,
+          "value": "#c4c4c4"
+        },
+        {
+          "step": 200,
+          "value": "#9a9a9a"
+        },
+        {
+          "step": 300,
+          "value": "#616161"
+        },
+        {
+          "step": 400,
+          "value": "#1b1b1b"
+        },
+        {
+          "step": 500,
+          "value": "#000000"
+        },
+        {
+          "step": 600,
+          "value": "#000000"
+        },
+        {
+          "step": 700,
+          "value": "#000000"
+        },
+        {
+          "step": 800,
+          "value": "#000000"
+        },
+        {
+          "step": 900,
+          "value": "#000000"
+        },
+        {
+          "step": 950,
+          "value": "#000000"
+        }
+      ],
+      "targetInSrgb": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "naiveClip": [
+        "#e5e5e5",
+        "#c4c4c4",
+        "#9a9a9a",
+        "#616161",
+        "#1b1b1b",
+        "#000000",
+        "#000000",
+        "#000000",
+        "#000000",
+        "#000000",
+        "#000000"
+      ]
+    },
+    {
+      "hex": "#ffffff",
+      "oklch": [
+        0.9999999934735462,
+        3.727399553519285e-8,
+        0
+      ],
+      "oklchString": "oklch(100% 0 0)",
+      "roundTrip": "#ffffff",
+      "roundTripViaString": "#ffffff",
+      "scale": [
+        {
+          "step": 50,
+          "value": "#ffffff"
+        },
+        {
+          "step": 100,
+          "value": "#ffffff"
+        },
+        {
+          "step": 200,
+          "value": "#ffffff"
+        },
+        {
+          "step": 300,
+          "value": "#ffffff"
+        },
+        {
+          "step": 400,
+          "value": "#ffffff"
+        },
+        {
+          "step": 500,
+          "value": "#ffffff"
+        },
+        {
+          "step": 600,
+          "value": "#d6d6d6"
+        },
+        {
+          "step": 700,
+          "value": "#b8b8b8"
+        },
+        {
+          "step": 800,
+          "value": "#989898"
+        },
+        {
+          "step": 900,
+          "value": "#838383"
+        },
+        {
+          "step": 950,
+          "value": "#565656"
+        }
+      ],
+      "targetInSrgb": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "naiveClip": [
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#ffffff",
+        "#d6d6d6",
+        "#b8b8b8",
+        "#989898",
+        "#838383",
+        "#565656"
+      ]
+    },
+    {
+      "hex": "#ff0000",
+      "oklch": [
+        0.6279553606145516,
+        0.2576833077361567,
+        29.233885192342655
+      ],
+      "oklchString": "oklch(62.8% 0.25768 29.234)",
+      "roundTrip": "#ff0000",
+      "roundTripViaString": "#ff0000",
+      "scale": [
+        {
+          "step": 50,
+          "value": "#fff1ee"
+        },
+        {
+          "step": 100,
+          "value": "#ffe0da"
+        },
+        {
+          "step": 200,
+          "value": "#ffc7bd"
+        },
+        {
+          "step": 300,
+          "value": "#ffa394"
+        },
+        {
+          "step": 400,
+          "value": "#ff6553"
+        },
+        {
+          "step": 500,
+          "value": "#ff0000"
+        },
+        {
+          "step": 600,
+          "value": "#dd0000"
+        },
+        {
+          "step": 700,
+          "value": "#bf0000"
+        },
+        {
+          "step": 800,
+          "value": "#9f0000"
+        },
+        {
+          "step": 900,
+          "value": "#890000"
+        },
+        {
+          "step": 950,
+          "value": "#540503"
+        }
+      ],
+      "targetInSrgb": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "naiveClip": [
+        "#fff1ee",
+        "#ffe0da",
+        "#ffc7bd",
+        "#ffa394",
+        "#ff6553",
+        "#ff0000",
+        "#ee0000",
+        "#d80000",
+        "#ae0000",
+        "#890000",
+        "#540503"
+      ]
+    }
+  ],
+  "gamut": [
+    {
+      "oklch": [
+        0.623,
+        0.214,
+        259.815
+      ],
+      "inSrgb": false,
+      "hex": "#2b7fff",
+      "naiveClip": "#2b7fff"
+    },
+    {
+      "oklch": [
+        0.637,
+        0.237,
+        25.331
+      ],
+      "inSrgb": true,
+      "hex": "#fb2c36",
+      "naiveClip": "#fb2c36"
+    },
+    {
+      "oklch": [
+        0.723,
+        0.219,
+        149.579
+      ],
+      "inSrgb": false,
+      "hex": "#00c950",
+      "naiveClip": "#00c950"
+    },
+    {
+      "oklch": [
+        0.7,
+        0.4,
+        30
+      ],
+      "inSrgb": false,
+      "hex": "#ff5843",
+      "naiveClip": "#ff0000"
+    },
+    {
+      "oklch": [
+        0.5,
+        0.35,
+        264
+      ],
+      "inSrgb": false,
+      "hex": "#0033ff",
+      "naiveClip": "#0000ff"
+    },
+    {
+      "oklch": [
+        0.9,
+        0.3,
+        110
+      ],
+      "inSrgb": false,
+      "hex": "#e8e800",
+      "naiveClip": "#efe900"
+    },
+    {
+      "oklch": [
+        0.3,
+        0.3,
+        300
+      ],
+      "inSrgb": false,
+      "hex": "#400078",
+      "naiveClip": "#5000a8"
+    }
+  ],
+  "edges": [
+    {
+      "oklch": [
+        1,
+        0.2,
+        120
+      ],
+      "hex": "#ffffff"
+    },
+    {
+      "oklch": [
+        1.2,
+        0,
+        0
+      ],
+      "hex": "#ffffff"
+    },
+    {
+      "oklch": [
+        0,
+        0.2,
+        120
+      ],
+      "hex": "#000000"
+    },
+    {
+      "oklch": [
+        -0.05,
+        0,
+        0
+      ],
+      "hex": "#000000"
+    },
+    {
+      "oklch": [
+        0.5,
+        0,
+        0
+      ],
+      "hex": "#636363"
+    },
+    {
+      "oklch": [
+        0.5,
+        -0.1,
+        40
+      ],
+      "hex": "#636363"
+    }
+  ]
+}

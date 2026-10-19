@@ -12,4 +12,14 @@ export const lib: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "oklch",
+    type: "registry:lib",
+    files: [
+      {
+        path: "lib/oklch.ts",
+        type: "registry:lib",
+      },
+    ],
+  },
 ]

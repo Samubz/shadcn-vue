@@ -24,6 +24,7 @@ import { makeTransformIconsPlugin } from './transform-icons'
 
 const SOURCE_BASE = 'reka'
 const SOURCE_UI_DIR = path.join('registry', 'bases', SOURCE_BASE, 'ui')
+const SOURCE_LIB_DIR = path.join('registry', 'bases', SOURCE_BASE, 'lib')
 const STYLES_CSS_DIR = path.join('registry', 'styles')
 const OUTPUT_BASE_DIR = 'styles'
 
@@ -79,6 +80,8 @@ export async function buildStyles() {
     const content = await fs.readFile(abs, 'utf8')
     sourceCache.set(abs, content)
   }))
+
+  const libFiles = await walkFiles(path.resolve(cwd, SOURCE_LIB_DIR))
 
   for (const style of STYLES) {
     const cssPath = path.resolve(cwd, STYLES_CSS_DIR, `style-${style.name}.css`)
@@ -136,6 +139,22 @@ export async function buildStyles() {
       await fs.writeFile(destAbs, outContent, 'utf8')
     }
 
+    // Lib files carry no tokens, but ui files import them through the same
+    // prefix (`@/registry/bases/reka/lib/*`), so mirror them next to `ui/`
+    // or the rewritten imports above would point at nothing.
+    const libOutDir = path.resolve(cwd, OUTPUT_BASE_DIR, `${SOURCE_BASE}-${style.name}`, 'lib')
+    await rimraf(libOutDir)
+    await fs.mkdir(libOutDir, { recursive: true })
+    for (const libAbs of libFiles) {
+      const filename = path.basename(libAbs)
+      if (EXCLUDED_FILENAMES.has(filename) || !TRANSFORMABLE_EXTENSIONS.has(path.extname(filename)))
+        continue
+      const libContent = (await fs.readFile(libAbs, 'utf8')).split(SOURCE_IMPORT_PREFIX).join(targetImportPrefix)
+      const destAbs = path.join(libOutDir, path.relative(path.resolve(cwd, SOURCE_LIB_DIR), libAbs))
+      await fs.mkdir(path.dirname(destAbs), { recursive: true })
+      await fs.writeFile(destAbs, libContent, 'utf8')
+    }
+
     // eslint-disable-next-line no-console
     console.log(
       `   ✅ reka-${style.name}: ${tokenCount} tokens, transformed ${transformedFiles} files, ${totalReplacements} replacements`,
@@ -148,7 +167,7 @@ export async function buildStyles() {
   // eslint-disable-next-line no-console
   console.log('   🧹 Running eslint --fix on generated output...')
   try {
-    await runEslintFix([`${OUTPUT_BASE_DIR}/${SOURCE_BASE}-*/ui/**/*.{ts,vue}`], cwd)
+    await runEslintFix([`${OUTPUT_BASE_DIR}/${SOURCE_BASE}-*/{ui,lib}/**/*.{ts,vue}`], cwd)
   }
   catch (err: any) {
     // eslint --fix exits non-zero when there are unfixable warnings — that's
